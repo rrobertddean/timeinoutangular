@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+
+<div class="container" style="margin-top:50px;">
+
+  <div class="col-sm-12">
+
+        <form #form="ngForm">
+          <div class="form-row">
+            <div class="col-sm-4">
+              <label style="float:left;padding-top:5px;padding-right:10px;">From: </label> 
+              <input type="date" class="form-control" style="width:80%;float:left;" name="frDate" [(ngModel)]="frDate"  />
+            </div>
+            <div class="col-sm-4">
+                <label style="float:left;padding-top:5px;padding-right:10px;">To: </label> 
+                <input type="date" class="form-control" style="width:80%;float:left;" name="toDate" [(ngModel)]="toDate" />
+            </div>
+            <div class="col-sm-4">
+              <button class="btn btn-primary" style="display:inline-block;margin-right:10px;" (click)="searchDateTimeIn(frDate,toDate)" ><i class="fa fa-search"></i> Search</button>
+              <button class="btn btn-success" (click)="downloadExcel(frDate,toDate)"><i class="fa fa-download"></i> Download</button>
+            </div>
+          </div>
+        </form>
+
+
+        <div class="clearfix"></div>
+
+        <table class="table" style="margin-top:50px;">  
+          <thead>
+            <tr>    
+              <th>Name</th>
+              <th>Time In</th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <tr *ngFor="let ti of timeIn">
+                  <td>{{ti.name}}</td>
+                  <td>{{ti.timein | date:'MMM d y hh:mm a'}}</td>
+              </tr>
+          </tbody>
+        </table>
+
+  
+
+
+
+
+  </div>
+</div>

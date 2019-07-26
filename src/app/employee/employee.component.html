@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+
+<div class="container" style="margin-top:50px;">
+
+  <div class="col-sm-12">
+      <p>
+        <a (click)="addEmployee()" class="btn btn-primary" style="cursor:pointer;color:white;">Add Employee</a>
+      </p>
+
+      <table class="table" *ngIf="employees">
+        <tr>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Address</th>
+            <th>Birthdate</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Action</th>            
+        </tr>
+
+        <tr *ngFor="let emp of employees">
+          <td>{{emp.name}}</td>
+          <td>{{emp.contactnumber}}</td>
+          <td>{{emp.address}}</td>
+          <td>{{emp.birthdate}}</td>
+          <td>{{emp.username}}</td>
+          <td>{{emp.password}}</td>
+          <td>
+            <a (click)="editEmployee(emp)" style="cursor:pointer;"><i class="fa fa-edit"></i></a>&nbsp;
+            <a href="#"  style="color:red;cursor:pointer;"><i class="fa fa-trash"></i></a>
+          </td>
+          
+        </tr>
+
+      </table>
+  </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalEmp" tabindex="-1" role="dialog" aria-labelledby="modalEditEmpTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalScrollableTitle">Employee</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form #form="ngForm" (submit)="submitEmployee(form)">
+
+          <input type="hidden" name="id" #id="ngModel" [(ngModel)]="empService.formData.id" />
+
+
+        <div class="modal-body">
+            <div class="form-group"> 
+                <label for="name">Name</label>
+                <input type="text"class="form-control" name="name" #name="ngModel" [(ngModel)]="empService.formData.name" >
+            </div>
+
+            <div class="form-group">
+                <label for="contactnumber">Contact Number</label>
+                <input type="text"class="form-control" name="contactnumber" #contactnumber="ngModel" [(ngModel)]="empService.formData.contactnumber" >
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text"class="form-control" name="address"  #address="ngModel" [(ngModel)]="empService.formData.address" >
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">Birthdate</label>
+                <input type="text"class="form-control" name="birthdate"  #birthdate="ngModel" [(ngModel)]="empService.formData.birthdate" >
+            </div>
+
+
+            <div class="form-group" style="display:none;">
+                <label for="username">Username</label> 
+                <input type="text"class="form-control" name="username"  #username="ngModel" [(ngModel)]="empService.formData.username" >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="text"class="form-control" name="password"  #password="ngModel" [(ngModel)]="empService.formData.password" >
+            </div>
+        </div>  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+
+
